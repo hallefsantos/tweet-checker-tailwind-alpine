@@ -1,25 +1,13 @@
-# Tailwind Boilerplate
-
-A barebones but configurable starter project for playing around with Tailwind in a proper PostCSS environment. Forked from https://github.com/tailwindcss/playground.
-
-Changes include:
-- stripped down the playground homepage for getting started quickly
-- imported `base.css` and `custom.css` files for adding custom styles with @apply
-- font family, text sizes, and screens ready to be configured in `tailwind.config.js`
-- replaced color palette with theme-ready lt/md/dk colors
-- moved CSS files into `/css` folder
-- added screen for print styles
-- reorganized serve and build tasks
-- implemented custom CSS linting with Stylelint
+# Tweet checker with Tailwind and AlpineJs
 
 To get started:
 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/dylanized/tailwind-minimal.git tailwind-minimal
+    git clone git@github.com:hallefsantos/tweet-checker-tailwind-alpine.git tweet-checker
 
-    cd tailwindcss-playground
+    cd tweet-checker
     ```
 
 2. Install the dependencies:
