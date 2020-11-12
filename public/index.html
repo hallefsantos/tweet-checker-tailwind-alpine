@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="stylesheet" href="/build/tailwind.css" />
+  <title>Home / Twitter</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<body class="antialiased">
+  <div class="flex h-screen">
+
+    <div class="w-1/4 p-3 flex flex-col justify-between border-r border-gray-300">
+      <div class="h-64 pb-64 box-content bg-gray-300"></div>
+      <div class="h-16 bg-gray-300"></div>
+    </div>
+
+    <div class="flex flex-col w-1/2 border-r border-gray-300">
+      <div class="p-3 border-b border-gray-300">
+        <h1 class="text-xl font-bold">Home</h1>
+      </div>
+      <!-- Form -->
+      <div
+        x-data="tweet()" 
+        class="p-3 flex">
+        <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+        <div class="ml-5 flex-auto">
+          <form action="">
+            <div class="relative rounded overflow-auto">
+              <textarea
+                @keyup="tweetCheck"
+                class="w-full h-16 focus:outline-none"
+                placeholder="What's happening"></textarea>
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-300">
+                <div x-ref="loader" class="absolute bottom-0 left-0 w-0 max-w-full h-1 bg-blue-500 transition-width duration-150 ease-linear"></div>
+              </div>
+            </div>
+            <div class="pt-2 flex justify-between items-center">
+              <div>
+                <a class="p-2 rounded-full bg-white hover:bg-blue-100 inline-block text-blue-500 transition duration-150 ease-linear"
+                  href="#">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                    </path>
+                  </svg>
+                </a>
+                <a class="p-2 rounded-full bg-white hover:bg-blue-100 inline-block text-blue-500 transition duration-150 ease-linear"
+                  href="#">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                    </path>
+                  </svg>
+                </a>
+                <a class="p-2 rounded-full bg-white hover:bg-blue-100 inline-block text-blue-500 transition duration-150 ease-linear"
+                  href="#">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                    </path>
+                  </svg>
+                </a>
+                <a class="p-2 rounded-full bg-white hover:bg-blue-100 inline-block text-blue-500 transition duration-150 ease-linear"
+                  href="#">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </a>
+                <a class="p-2 rounded-full bg-white hover:bg-blue-100 inline-block text-blue-500 transition duration-150 ease-linear"
+                  href="#">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="flex items-center">
+                <div 
+                  x-ref="count"
+                  x-show="show"
+                  class="mr-4 flex items-center justify-center h-8 w-8 border-2 border-orange-500 text-orange-500 text-sm leading-none font-bold rounded-full">
+                  5
+                </div>
+                <button 
+                  x-bind:disabled="disabled"
+                  class="px-4 py-2 bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-full">Tweet</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="flex-auto overflow-auto border-t-8 border-gray-300">
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+        <!-- Item -->
+        <div class="p-3 flex items-start border-t border-gray-300">
+          <div class="h-16 w-16 rounded-full bg-gray-300"></div>
+          <div class="ml-5 flex-grow bg-gray-200 h-32"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-1/4 p-3">
+      <div class="bg-gray-300 h-full"></div>
+    </div>
+  </div>
+</body>
+
+<script>
+  function tweet() {
+    return {
+        show: false,
+        limit: 50,
+        disabled: true,
+        tweetCheck(e) {
+          count = e.target.value.length
+          this.$refs.count.innerText = (this.limit - count)
+          this.show = false
+          this.disabled = false
+          
+          this.$refs.loader.style.width = `${(count * 100) / this.limit}%`
+
+          this.$refs.loader.classList.add('bg-blue-500')
+          this.$refs.loader.classList.remove('bg-orange-500')
+
+          if(count > (this.limit - 11) && count <= this.limit) {
+            this.show = true
+            this.$refs.loader.classList.add('bg-orange-500')
+            this.$refs.count.classList.remove('border-red-500', 'text-red-500')
+            this.$refs.count.classList.add('border-orange-500', 'text-orange-500')
+            this.$refs.loader.classList.remove('bg-blue-500')
+          }
+
+          if(count > this.limit) {
+            this.show = true
+            this.disabled = true
+            this.$refs.loader.classList.add('bg-red-500')
+            this.$refs.loader.classList.remove('bg-orange-500')
+            this.$refs.count.classList.remove('border-orange-500', 'text-orange-500')
+            this.$refs.count.classList.add('border-red-500', 'text-red-500')
+            this.$refs.loader.classList.remove('bg-blue-500')
+          }
+        },
+
+    }
+  }
+</script>
+</html>
